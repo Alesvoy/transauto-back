@@ -1,24 +1,23 @@
-
-import express, { Request } from 'express';
-import prisma from './utils/db';
+import express, { Request } from "express";
+import prisma from "./utils/db";
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
 
-app.get('/', async (req, res) => {
-  const allUnits = await prisma.unit.findMany()
+app.get("/", async (req, res) => {
+  const allUnits = await prisma.unit.findMany();
   console.log(allUnits);
-  res.send('Hello World!');
+  res.json(allUnits);
 });
 
-app.post('/', async (req: Request, res) => {
+app.post("/", async (req, res) => {
   const newUnit = await prisma.unit.create({
     data: {
       name: req.body.name,
     },
-  })
+  });
   res.json(newUnit);
 });
 

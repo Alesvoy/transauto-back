@@ -11,6 +11,42 @@ datasource db {
 }
 
 model Unit {
-  id    Int     @id @default(autoincrement())
-  name  String  @unique
+  id         Int          @id @default(autoincrement())
+  name       String       @unique
+  driver     Driver?
+  maintnence Maintnence[]
+  trip       Trip[]
+}
+
+model Driver {
+  id         Int          @id @default(autoincrement())
+  unitId     Int          @unique
+  name       String       @unique
+  unit       Unit         @relation(fields: [unitId], references: [id])
+  maintnence Maintnence[]
+  trip       Trip[]
+}
+
+model Maintnence {
+  id        Int      @id @default(autoincrement())
+  unitId    Int      @unique
+  driverId  Int      @unique
+  date      DateTime @default(now())
+  mileage   Int
+  maintType String
+  cost      Float
+  notes     String?
+  unit      Unit     @relation(fields: [unitId], references: [id])
+  driver    Driver   @relation(fields: [driverId], references: [id])
+}
+
+model Trip {
+  id       Int      @id @default(autoincrement())
+  unitId   Int      @unique
+  driverId Int      @unique
+  date     DateTime @default(now())
+  tripType String
+  notes    String?
+  unit     Unit     @relation(fields: [unitId], references: [id])
+  driver   Driver   @relation(fields: [driverId], references: [id])
 }
