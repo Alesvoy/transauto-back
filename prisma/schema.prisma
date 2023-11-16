@@ -11,23 +11,23 @@ datasource db {
 }
 
 model Unit {
-  id         Int          @id @default(autoincrement())
-  name       String       @unique
-  driver     Driver?
-  maintnence Maintnence[]
-  trip       Trip[]
+  id          Int           @id @default(autoincrement())
+  name        String        @unique
+  driver      Driver?
+  maintenance Maintenance[]
+  trip        Trip[]
 }
 
 model Driver {
-  id         Int          @id @default(autoincrement())
-  unitId     Int          @unique
-  name       String       @unique
-  unit       Unit         @relation(fields: [unitId], references: [id])
-  maintnence Maintnence[]
-  trip       Trip[]
+  id          Int           @id @default(autoincrement())
+  unitId      Int           @unique
+  name        String        @unique
+  unit        Unit          @relation(fields: [unitId], references: [id])
+  maintenance Maintenance[]
+  trip        Trip[]
 }
 
-model Maintnence {
+model Maintenance {
   id        Int      @id @default(autoincrement())
   unitId    Int      @unique
   driverId  Int      @unique
