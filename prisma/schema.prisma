@@ -10,6 +10,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  name     String?
+  password String
+  role     String  @default("user")
+}
+
 model Unit {
   id          Int           @id @default(autoincrement())
   name        String        @unique
@@ -28,16 +36,16 @@ model Driver {
 }
 
 model Maintenance {
-  id        Int      @id @default(autoincrement())
-  unitId    Int      @unique
-  driverId  Int      @unique
-  date      DateTime @default(now())
-  mileage   Int
-  maintType String
-  cost      Float
-  notes     String?
-  unit      Unit     @relation(fields: [unitId], references: [id])
-  driver    Driver   @relation(fields: [driverId], references: [id])
+  id          Int      @id @default(autoincrement())
+  unitId      Int      @unique
+  driverId    Int      @unique
+  date        DateTime @default(now())
+  mileage     Int
+  description String
+  cost        Float
+  notes       String?
+  unit        Unit     @relation(fields: [unitId], references: [id])
+  driver      Driver   @relation(fields: [driverId], references: [id])
 }
 
 model Trip {
