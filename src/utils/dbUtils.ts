@@ -69,7 +69,9 @@ const seedDatabase = async () => {
     data: {
       unitId: unit1.id,
       driverId: driver1.id,
-      tripType: "New York - Boston",
+      origin: "New York",
+      destination: "Los Angeles",
+      product: "Apples",
       notes: "Performed by John Smith",
     },
   });
@@ -78,7 +80,9 @@ const seedDatabase = async () => {
     data: {
       unitId: unit2.id,
       driverId: driver2.id,
-      tripType: "Boston - New York",
+      origin: "Boston",
+      destination: "Miami",
+      product: "Oranges",
       notes: "Performed by Sam Powell",
     },
   });

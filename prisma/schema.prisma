@@ -49,12 +49,14 @@ model Maintenance {
 }
 
 model Trip {
-  id       Int      @id @default(autoincrement())
-  unitId   Int      @unique
-  driverId Int      @unique
-  date     DateTime @default(now())
-  tripType String
-  notes    String?
-  unit     Unit     @relation(fields: [unitId], references: [id])
-  driver   Driver   @relation(fields: [driverId], references: [id])
+  id          Int      @id @default(autoincrement())
+  unitId      Int      @unique
+  driverId    Int      @unique
+  date        DateTime @default(now())
+  origin      String
+  destination String
+  product     String
+  notes       String?
+  unit        Unit     @relation(fields: [unitId], references: [id])
+  driver      Driver   @relation(fields: [driverId], references: [id])
 }
